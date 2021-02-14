@@ -50,35 +50,39 @@ async def _8ball(ctx, *, question):
 async def rps(ctx, *, choice):
 
     #The CPU makes a choice
-    options = ['Rock', 'Paper', 'Scissors']
+    options = ['rock', 'paper', 'scissors']
     cpuchoice = random.choice(options)
-
+    choice = choice.lower()
+    
+    if choice not in options:
+        await ctx.send(f'Please use only Rock, Paper, or Scissors.')
+    
     #Determines the outcome of the game
     if cpuchoice == choice:
         await ctx.send(f'We both chose {cpuchoice}')
         await add_tie(ctx)
 
-    if cpuchoice == 'Rock' and choice == 'Scissors':
+    if cpuchoice == 'rock' and choice == 'scissors':
         await ctx.send(f'You chose: :v:\nI chose: :fist:\nYou lose')
         await add_loss(ctx)
 
-    if cpuchoice == "Scissors" and choice == 'Rock':
+    if cpuchoice == "scissors" and choice == 'rock':
         await ctx.send(f'You chose: :fist:\nI chose: :v:\nYou win')
         await add_win(ctx)
 
-    if cpuchoice == 'Paper' and choice == 'Rock':
+    if cpuchoice == 'paper' and choice == 'rock':
         await ctx.send(f'You chose: :fist:\nI chose: :raised_hand:\nYou lose')
         await add_loss(ctx)
 
-    if cpuchoice == "Rock" and choice == 'Paper':
+    if cpuchoice == "rock" and choice == 'paper':
         await ctx.send(f'You chose: :raised_hand:\nI chose: :fist:\nYou win')
         await add_win(ctx)
 
-    if cpuchoice == 'Scissors' and choice == 'Paper':
+    if cpuchoice == 'scissors' and choice == 'paper':
         await ctx.send(f'You chose: :raised_hand:\nI chose: :v:\nYou lose')
         await add_loss(ctx)
 
-    if cpuchoice == "Paper" and choice == 'Scissors':
+    if cpuchoice == "paper" and choice == 'scissors':
         await ctx.send(f'You chose: :v:\nI chose: :raised_hand:\nYou win')
         await add_win(ctx)
 
